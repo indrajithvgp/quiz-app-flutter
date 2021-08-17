@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import './question.dart';
-import './answer.dart';
+import 'package:flutter_complete_guide/quiz.dart';
+import './quiz.dart';
+// import './answer.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,36 +15,41 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+
+  final _questions = const [
+    {"question":"what is your nationality?",
+      "answers": [{"text":"indian", "score":80}, {"text":"iranian", "score":90}]
+    },
+    {"question":"what is your fav food?",
+      "answers": [{"text":"chicken", "score":80}, {"text":"vadai", "score":100}, {"text":"obatta", "score":99}]
+    },
+    {"question":"what is your zodiac sign?",
+      "answers": [{"text":"leo", "score":80}, {"text":"taurus", "score":100}]
+    }
+  ];
+
   var _questionIdx = 0;
 
-  void pressIt() {
+  void _answerQuestion() {
+    
     setState(() {
       _questionIdx = _questionIdx + 1;
-      print(_questionIdx);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'what\'s your name?',
-      'what\'s your age?',
-      'where are you from?',
-    ];
 
+    
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
               title: Text("My App"),
             ),
-            body: Column(
-              children: [
-                RaisedButton(
-                  onPressed: pressIt,
-                  child: Question(questions[_questionIdx]),
-                ),
-                Answer(pressIt),
-              ],
-            )));
+            body: 
+            Quiz(questionIdx: _questionIdx, 
+            questions: _questions, 
+            answerQuestion: _answerQuestion)));
   }
 }

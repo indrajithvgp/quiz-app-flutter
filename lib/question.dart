@@ -12,6 +12,6 @@ class Question extends StatelessWidget {
           question,
           style: TextStyle(fontSize: 20),
           textAlign: TextAlign.center,
-        ));
+        ), );
   }
 }
